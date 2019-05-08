@@ -5,6 +5,8 @@ import Header from './components/Header';
 import LandingPage from './components/LandingPage';
 import Footer from './components/Footer';
 
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 class App extends Component {
