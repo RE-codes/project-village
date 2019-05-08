@@ -1,0 +1,21 @@
+.landing-page {
+  background-image: url('../src/images/landing-page-image.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.landing-page-overlay {
+  background-color: rgba(0, 0, 0, .55);
+  height: 100%;
+}
+
+.landing-page .row {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing-button {
+  border-radius: 25px;
+}
