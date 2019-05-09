@@ -5,7 +5,9 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  FormGroup,
   Form,
+  FormFeedback,
   Input
 } from 'reactstrap';
 
@@ -13,7 +15,16 @@ class SignUp extends Component {
   state = {
     modal: this.props.initialModalState,
     email: '',
-    password: ''
+    password: '',
+    isInvalid: {
+      email: false,
+      password: false
+    },
+    errorMsg: {
+      email: '',
+      password: ''
+    },
+    validated: false
   };
 
   toggle = () => {
@@ -33,18 +44,74 @@ class SignUp extends Component {
 
     event.preventDefault();
 
-    let loggedUser = {};
+    let loggedUser = {
+      email,
+      password
+    };
 
-    if (email && password) {
-      loggedUser = {
-        email,
-        password
-      };
+    // Form validation
+    this.validateForm(loggedUser);
+
+    if (this.state.validated === true) {
+      // Submit Form
+      console.log('submitted!', loggedUser);
+
+      this.toggle();
+
+      //Reset State
+      this.setState({
+        email: '',
+        password: '',
+        isInvalid: {
+          email: false,
+          password: false
+        },
+        errorMsg: {
+          email: '',
+          password: ''
+        }
+      });
     }
+  };
 
-    console.log('loggedUser = ', loggedUser);
+  validateForm = formData => {
+    const { email, password } = formData;
 
-    this.toggle();
+    //Regex to validate email structure
+    // eslint-disable-next-line no-useless-escape, prettier/prettier
+    const mailFormat = /\S+@\S+\.\S+/;
+
+    if (!email) {
+      this.setState({
+        isInvalid: {
+          email: true
+        },
+        errorMsg: {
+          email: 'Email field is required'
+        }
+      });
+    } else if (!email.match(mailFormat)) {
+      this.setState({
+        isInvalid: {
+          email: true
+        },
+        errorMsg: {
+          email: 'Email is invalid, please enter a valid email address'
+        }
+      });
+    } else if (!password) {
+      this.setState({
+        isInvalid: {
+          password: true
+        },
+        errorMsg: {
+          password: 'Password field is required'
+        }
+      });
+    } else {
+      // set validated to true
+      this.setState({ validated: true });
+    }
   };
 
   render() {
@@ -65,23 +132,31 @@ class SignUp extends Component {
           </ModalHeader>
           <ModalBody>
             <Form>
-              <Input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                className="mb-2"
-                bsSize="lg"
-                value={this.state.email}
-                onChange={this.onChange}
-              />
-              <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                bsSize="lg"
-                value={this.state.password}
-                onChange={this.onChange}
-              />
+              <FormGroup>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  className="mb-2"
+                  bsSize="lg"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  invalid={this.state.isInvalid.email}
+                />
+                <FormFeedback>{this.state.errorMsg.email}</FormFeedback>
+              </FormGroup>
+              <FormGroup className="mb-0">
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  bsSize="lg"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                  invalid={this.state.isInvalid.password}
+                />
+                <FormFeedback>{this.state.errorMsg.password}</FormFeedback>
+              </FormGroup>
             </Form>
           </ModalBody>
           <ModalFooter>
