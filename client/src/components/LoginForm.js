@@ -3,11 +3,16 @@ import { Form, Input } from 'reactstrap';
 
 export class SignUpForm extends Component {
   state = {
-    name: '',
     email: '',
-    password: '',
-    password2: ''
+    password: ''
   };
+
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
   render() {
     return (
       <Form>
@@ -17,6 +22,8 @@ export class SignUpForm extends Component {
           placeholder="Email Address"
           className="mb-2"
           bsSize="lg"
+          value={this.state.email}
+          onChange={this.onChange}
         />
         <Input
           type="password"
@@ -24,6 +31,8 @@ export class SignUpForm extends Component {
           placeholder="Password"
           className="mb-2"
           bsSize="lg"
+          value={this.state.password}
+          onChange={this.onChange}
         />
       </Form>
     );
