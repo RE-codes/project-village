@@ -1,17 +1,53 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-import { SignUpForm } from './SignUpForm';
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Form,
+  Input
+} from 'reactstrap';
 
 class SignUp extends Component {
   state = {
-    modal: this.props.initialModalState
+    modal: this.props.initialModalState,
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
   };
 
   toggle = () => {
     this.setState({
       modal: !this.state.modal
     });
+  };
+
+  onChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  onSubmitClick = event => {
+    const { name, email, password, password2 } = this.state;
+
+    event.preventDefault();
+
+    let newUser = {};
+
+    if (name && email && password && password2 && password === password2) {
+      newUser = {
+        name,
+        email,
+        password
+      };
+    }
+
+    console.log('newUser = ', newUser);
+
+    this.toggle();
   };
 
   render() {
@@ -30,25 +66,61 @@ class SignUp extends Component {
           <ModalHeader toggle={this.toggle}>
             <span className="h3">Sign Up for a New Account</span>
           </ModalHeader>
-          <ModalBody>
-            <SignUpForm />
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              color="primary"
-              className="rounded-button"
-              onClick={this.toggle}
-            >
-              Submit
-            </Button>{' '}
-            <Button
-              color="secondary"
-              className="rounded-button"
-              onClick={this.toggle}
-            >
-              Cancel
-            </Button>
-          </ModalFooter>
+          <Form>
+            <ModalBody>
+              <Input
+                type="text"
+                name="name"
+                placeholder="Name"
+                className="mb-2"
+                bsSize="lg"
+                value={this.state.name}
+                onChange={this.onChange}
+              />
+              <Input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                className="mb-2"
+                bsSize="lg"
+                value={this.state.email}
+                onChange={this.onChange}
+              />
+              <Input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="mb-2"
+                bsSize="lg"
+                value={this.state.password}
+                onChange={this.onChange}
+              />
+              <Input
+                type="password"
+                name="password2"
+                placeholder="Confirm password"
+                bsSize="lg"
+                value={this.state.password2}
+                onChange={this.onChange}
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                color="primary"
+                className="rounded-button"
+                onClick={this.onSubmitClick}
+              >
+                Submit
+              </Button>{' '}
+              <Button
+                color="secondary"
+                className="rounded-button"
+                onClick={this.toggle}
+              >
+                Cancel
+              </Button>
+            </ModalFooter>
+          </Form>
         </Modal>
       </React.Fragment>
     );
