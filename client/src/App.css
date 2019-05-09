@@ -17,5 +17,6 @@
 }
 
 .landing-button {
+  display: inline;
   border-radius: 25px;
 }

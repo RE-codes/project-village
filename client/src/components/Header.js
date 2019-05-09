@@ -14,7 +14,7 @@ import {
 } from 'reactstrap';
 import logo from '../images/logo.png';
 
-export class Header2 extends Component {
+class Header extends Component {
   state = {
     isOpen: false
   };
@@ -62,4 +62,4 @@ export class Header2 extends Component {
   }
 }
 
-export default Header2;
+export default Header;

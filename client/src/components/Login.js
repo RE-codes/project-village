@@ -18,17 +18,17 @@ class SignUp extends Component {
       <React.Fragment>
         <Button
           outline
-          color="primary"
+          color="secondary"
           size="lg"
           className="m-3 landing-button"
           onClick={this.toggle}
         >
-          Sign Up
+          Login
         </Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Sign Up</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
-            <h1>Sign up form</h1>
+            <h1>Login form</h1>
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>
