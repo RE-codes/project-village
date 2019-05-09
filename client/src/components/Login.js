@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+import LoginForm from './LoginForm';
 
 class SignUp extends Component {
   state = {
@@ -20,21 +21,31 @@ class SignUp extends Component {
           outline
           color="secondary"
           size="lg"
-          className="m-3 landing-button"
+          className="m-3 rounded-button"
           onClick={this.toggle}
         >
           Login
         </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} centered>
+          <ModalHeader toggle={this.toggle}>
+            <span className="h3">Login to Your Account</span>{' '}
+          </ModalHeader>
           <ModalBody>
-            <h1>Login form</h1>
+            <LoginForm />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
+            <Button
+              color="primary"
+              className="rounded-button"
+              onClick={this.toggle}
+            >
               Submit
             </Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>
+            <Button
+              color="secondary"
+              className="rounded-button"
+              onClick={this.toggle}
+            >
               Cancel
             </Button>
           </ModalFooter>

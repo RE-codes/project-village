@@ -10,13 +10,17 @@
   height: 100%;
 }
 
+.landing-page-divider {
+  width: 125px;
+  border-top: 2px solid #F8F9FA;
+}
+
 .landing-page .row {
   display: flex;
   align-items: center;
   height: 100vh;
 }
 
-.landing-button {
-  display: inline;
+.rounded-button {
   border-radius: 25px;
 }

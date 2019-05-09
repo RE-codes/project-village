@@ -27,21 +27,20 @@ class Header extends Component {
     return (
       <header>
         <Navbar className="" color="primary" dark fixed="top" expand="md">
-          <img
-            src={logo}
-            alt="logo"
-            height="40px"
-            className="mr-2 rounded-circle"
-          />
-          <NavbarBrand href="/">Project Village</NavbarBrand>
+          <NavbarBrand href="/">
+            <img
+              src={logo}
+              alt="logo"
+              height="40px"
+              className="mr-2 rounded-circle"
+            />
+            Project Village
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">Feed</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">About</NavLink>
+                <NavLink href="/">News Feed</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -54,6 +53,9 @@ class Header extends Component {
                   <DropdownItem>Something else here</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/about">About</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
