@@ -40,15 +40,15 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">News Feed</NavLink>
+                <NavLink href="/news-feed">News Feed</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Profile
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>View Profile</DropdownItem>
-                  <DropdownItem>Edit Profile</DropdownItem>
+                  <DropdownItem href="/profile">View Profile</DropdownItem>
+                  <DropdownItem href="/edit-profile">Edit Profile</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>Something else here</DropdownItem>
                 </DropdownMenu>

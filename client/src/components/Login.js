@@ -4,7 +4,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   FormGroup,
   Form,
   FormFeedback,
@@ -39,6 +38,25 @@ class SignUp extends Component {
     });
   };
 
+  onCancelClick = () => {
+    this.toggle();
+
+    //Reset State
+    this.setState({
+      email: '',
+      password: '',
+      isInvalid: {
+        email: false,
+        password: false
+      },
+      errorMsg: {
+        email: '',
+        password: ''
+      },
+      validated: false
+    });
+  };
+
   onSubmitClick = event => {
     const { email, password } = this.state;
 
@@ -69,7 +87,8 @@ class SignUp extends Component {
         errorMsg: {
           email: '',
           password: ''
-        }
+        },
+        validated: false
       });
     }
   };
@@ -131,7 +150,7 @@ class SignUp extends Component {
             <span className="h3">Login to Your Account</span>{' '}
           </ModalHeader>
           <ModalBody>
-            <Form>
+            <Form onSubmit={this.onSubmitClick} noValidate>
               <FormGroup>
                 <Input
                   type="email"
@@ -145,7 +164,7 @@ class SignUp extends Component {
                 />
                 <FormFeedback>{this.state.errorMsg.email}</FormFeedback>
               </FormGroup>
-              <FormGroup className="mb-0">
+              <FormGroup className="mb-3">
                 <Input
                   type="password"
                   name="password"
@@ -157,24 +176,25 @@ class SignUp extends Component {
                 />
                 <FormFeedback>{this.state.errorMsg.password}</FormFeedback>
               </FormGroup>
+              <hr />
+              <FormGroup>
+                <Button
+                  color="secondary"
+                  className="rounded-button float-right"
+                  onClick={this.onCancelClick}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  color="primary"
+                  className="rounded-button float-right mr-3"
+                >
+                  Submit
+                </Button>
+              </FormGroup>
             </Form>
           </ModalBody>
-          <ModalFooter>
-            <Button
-              color="primary"
-              className="rounded-button"
-              onClick={this.onSubmitClick}
-            >
-              Submit
-            </Button>{' '}
-            <Button
-              color="secondary"
-              className="rounded-button"
-              onClick={this.toggle}
-            >
-              Cancel
-            </Button>
-          </ModalFooter>
         </Modal>
       </React.Fragment>
     );
