@@ -28,8 +28,7 @@ class SignUp extends Component {
       email: '',
       password: '',
       password2: ''
-    },
-    validated: false
+    }
   };
 
   toggle = () => {
@@ -64,8 +63,7 @@ class SignUp extends Component {
         email: '',
         password: '',
         password2: ''
-      },
-      validated: false
+      }
     });
   };
 
@@ -81,10 +79,7 @@ class SignUp extends Component {
       password2
     };
 
-    // Form validation
-    this.validateForm(newUser);
-
-    if (this.state.validated === true) {
+    if (this.validated(newUser)) {
       // Submit Form
       console.log('submitted!', newUser);
 
@@ -107,13 +102,14 @@ class SignUp extends Component {
           email: '',
           password: '',
           password2: ''
-        },
-        validated: false
+        }
       });
+    } else {
+      return;
     }
   };
 
-  validateForm = formData => {
+  validated = formData => {
     const { name, email, password, password2 } = formData;
 
     //Regex to validate email structure
@@ -129,6 +125,7 @@ class SignUp extends Component {
           name: 'Name field is required'
         }
       });
+      return false;
     } else if (!email) {
       this.setState({
         isInvalid: {
@@ -138,6 +135,7 @@ class SignUp extends Component {
           email: 'Email field is required'
         }
       });
+      return false;
     } else if (!email.match(mailFormat)) {
       this.setState({
         isInvalid: {
@@ -147,6 +145,7 @@ class SignUp extends Component {
           email: 'Email is invalid, please enter a valid email address'
         }
       });
+      return false;
     } else if (!password) {
       this.setState({
         isInvalid: {
@@ -156,6 +155,7 @@ class SignUp extends Component {
           password: 'Password field is required'
         }
       });
+      return false;
     } else if (!password2) {
       this.setState({
         isInvalid: {
@@ -165,6 +165,7 @@ class SignUp extends Component {
           password2: 'Confirm password field is required'
         }
       });
+      return false;
     } else if (password2 !== password) {
       this.setState({
         isInvalid: {
@@ -174,9 +175,10 @@ class SignUp extends Component {
           password2: 'Passwords do not match'
         }
       });
+      return false;
     } else {
       // set validated to true
-      this.setState({ validated: true });
+      return true;
     }
   };
 
@@ -259,7 +261,6 @@ class SignUp extends Component {
                   Cancel
                 </Button>
                 <Button
-                  type="submit"
                   color="primary"
                   className="rounded-button float-right mr-3"
                 >

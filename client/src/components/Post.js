@@ -29,7 +29,7 @@ class Post extends Component {
             <Col md="12">
               <CardHeader>
                 <h5 className="d-inline-block">{post.username} says:</h5>
-                <p className="lead text-secondary float-right d-inline-block">
+                <p className="text-secondary float-right d-inline-block">
                   Village {post.rank}
                 </p>
               </CardHeader>

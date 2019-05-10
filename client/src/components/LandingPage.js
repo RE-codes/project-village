@@ -9,7 +9,7 @@ class LandingPage extends Component {
       <div className="landing-page">
         <div className="landing-page-overlay">
           <Container>
-            <Row>
+            <Row className="vertical-center">
               <Col md="12" className="text-center">
                 <h1 className="display-3 text-light mb-4">Project Village</h1>
                 <p className="lead text-light pb-2">

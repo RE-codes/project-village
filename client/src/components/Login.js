@@ -52,8 +52,7 @@ class SignUp extends Component {
       errorMsg: {
         email: '',
         password: ''
-      },
-      validated: false
+      }
     });
   };
 
@@ -67,10 +66,7 @@ class SignUp extends Component {
       password
     };
 
-    // Form validation
-    this.validateForm(loggedUser);
-
-    if (this.state.validated === true) {
+    if (this.validated(loggedUser)) {
       // Submit Form
       console.log('submitted!', loggedUser);
 
@@ -87,13 +83,14 @@ class SignUp extends Component {
         errorMsg: {
           email: '',
           password: ''
-        },
-        validated: false
+        }
       });
+    } else {
+      return;
     }
   };
 
-  validateForm = formData => {
+  validated = formData => {
     const { email, password } = formData;
 
     //Regex to validate email structure
@@ -109,6 +106,7 @@ class SignUp extends Component {
           email: 'Email field is required'
         }
       });
+      return false;
     } else if (!email.match(mailFormat)) {
       this.setState({
         isInvalid: {
@@ -118,6 +116,7 @@ class SignUp extends Component {
           email: 'Email is invalid, please enter a valid email address'
         }
       });
+      return false;
     } else if (!password) {
       this.setState({
         isInvalid: {
@@ -127,9 +126,10 @@ class SignUp extends Component {
           password: 'Password field is required'
         }
       });
+      return false;
     } else {
       // set validated to true
-      this.setState({ validated: true });
+      return true;
     }
   };
 
@@ -150,7 +150,7 @@ class SignUp extends Component {
             <span className="h3">Login to Your Account</span>{' '}
           </ModalHeader>
           <ModalBody>
-            <Form onSubmit={this.onSubmitClick} noValidate>
+            <Form noValidate>
               <FormGroup>
                 <Input
                   type="email"
@@ -186,9 +186,10 @@ class SignUp extends Component {
                   Cancel
                 </Button>
                 <Button
-                  type="submit"
+                  type="button"
                   color="primary"
                   className="rounded-button float-right mr-3"
+                  onClick={this.onSubmitClick}
                 >
                   Submit
                 </Button>

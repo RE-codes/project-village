@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -27,7 +28,7 @@ class Header extends Component {
     return (
       <header>
         <Navbar className="" color="primary" dark fixed="top" expand="md">
-          <NavbarBrand href="/">
+          <NavbarBrand tag={Link} to="/">
             <img
               src={logo}
               alt="logo"
@@ -40,21 +41,29 @@ class Header extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/news-feed">News Feed</NavLink>
+                <NavLink tag={Link} to="/news-feed">
+                  News Feed
+                </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Profile
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem href="/profile">View Profile</DropdownItem>
-                  <DropdownItem href="/edit-profile">Edit Profile</DropdownItem>
+                  <DropdownItem tag={Link} to="/profile">
+                    View Profile
+                  </DropdownItem>
+                  <DropdownItem tag={Link} to="/edit-profile">
+                    Edit Profile
+                  </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>Something else here</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/about">About</NavLink>
+                <NavLink tag={Link} to="/about">
+                  About
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
