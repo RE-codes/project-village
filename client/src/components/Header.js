@@ -32,7 +32,7 @@ class Header extends Component {
             <img
               src={logo}
               alt="logo"
-              height="40px"
+              height="35px"
               className="mr-2 rounded-circle"
             />
             Project Village
@@ -40,6 +40,11 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink tag={Link} to="/map">
+                  My Village
+                </NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/news-feed">
                   News Feed
@@ -57,7 +62,9 @@ class Header extends Component {
                     Edit Profile
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Something else here</DropdownItem>
+                  <DropdownItem tag={Link} to="/">
+                    Log Out
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>

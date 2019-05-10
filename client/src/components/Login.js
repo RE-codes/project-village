@@ -22,8 +22,7 @@ class SignUp extends Component {
     errorMsg: {
       email: '',
       password: ''
-    },
-    validated: false
+    }
   };
 
   toggle = () => {

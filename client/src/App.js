@@ -5,6 +5,7 @@ import Header from './components/Header';
 import LandingPage from './components/LandingPage';
 import About from './components/About';
 import NewsFeed from './components/NewsFeed';
+import SidebarMap from './components/SidebarMap';
 import Footer from './components/Footer';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +21,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/about" component={About} />
           <Route exact path="/news-feed" component={NewsFeed} />
+          <Route exact path="/map" component={SidebarMap} />
         </Router>
         <Footer />
       </div>
