@@ -14,7 +14,7 @@ class SidebarMap extends Component {
     }
   };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const success = position => {
       console.log('success returns: ', position);
       this.setState({
@@ -26,7 +26,7 @@ class SidebarMap extends Component {
     };
     const err = err => console.error(err);
 
-    await navigator.geolocation.getCurrentPosition(success, err);
+    navigator.geolocation.getCurrentPosition(success, err);
   };
 
   // static defaultProps = {
@@ -39,7 +39,9 @@ class SidebarMap extends Component {
 
   render() {
     return (
-      <Container style={{ height: '67vh', marginTop: '75px' }}>
+      <Container
+        style={{ height: '67vh', marginTop: '2rem', marginBottom: '2rem' }}
+      >
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyCUrK2NlmY72Y620bmfkGvJzra1wIN32uw' }}
           center={this.state.myCoords}

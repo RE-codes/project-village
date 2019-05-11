@@ -27,7 +27,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <Navbar className="" color="primary" dark fixed="top" expand="md">
+        <Navbar className="" color="primary" dark expand="md">
           <NavbarBrand tag={Link} to="/">
             <img
               src={logo}
@@ -40,11 +40,6 @@ class Header extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink tag={Link} to="/map">
-                  My Village
-                </NavLink>
-              </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/news-feed">
                   News Feed
@@ -67,6 +62,11 @@ class Header extends Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <NavItem>
+                <NavLink tag={Link} to="/map" disabled>
+                  My Village
+                </NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/about">
                   About

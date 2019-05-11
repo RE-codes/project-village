@@ -11,8 +11,8 @@
 }
 
 .landing-page-divider {
-  width: 125px;
-  border-top: 2px solid #F8F9FA;
+  width: 20%;
+  border-top: 1px solid #F8F9FA;
 }
 
 .vertical-center {
@@ -27,10 +27,10 @@
 
 .about-page {
   background-image: url('../src/images/daddy-daughter.jpg');
-  background-position: top;
+  background-repeat: no-repeat;
+  background-position: 0 25%;
   background-size: cover;
   height: 100vh;
-  margin-top: 50px;
 }
 
 .about-page-overlay {
@@ -44,7 +44,37 @@
 }
 
 .news-feed {
-  margin-top: 100px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.news-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-button {
+  width: 100%;
+  border-radius: 0;
+  opacity: .8;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+}
+
+.sidebar-button:not(:disabled):not(.disabled):active:focus {
+  box-shadow: none;
+}
+
+.sidebar-button:focus {
+  background-color: #ee686e;
+  box-shadow: none;
+}
+
+.sidebar-button:first-of-type {
+  border-radius: 10px 10px 0 0;
+}
+
+.sidebar-button:last-of-type {
+  border-radius: 0 0 10px 10px;
 }
 
 .footer {
