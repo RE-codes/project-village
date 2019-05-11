@@ -80,31 +80,31 @@ class CreatePost extends Component {
       other
     } = this.state;
 
-    const interests = [];
+    const categories = [];
 
     if (childcare) {
-      interests.push('childcare');
+      categories.push('Childcare');
     }
     if (petcare) {
-      interests.push('petcare');
+      categories.push('Pet Care');
     }
     if (household) {
-      interests.push('household');
+      categories.push('Household');
     }
     if (transportation) {
-      interests.push('transportation');
+      categories.push('Transportation');
     }
     if (questions) {
-      interests.push('questions');
+      categories.push('Questions');
     }
     if (other) {
-      interests.push('other');
+      categories.push('Other');
     }
 
     let post = {
       title,
       text,
-      interests
+      categories
     };
 
     if (this.validated(post)) {
@@ -166,39 +166,16 @@ class CreatePost extends Component {
 
   render() {
     return (
-      <Card className="my-3 shadow-sm">
+      <Card className="my-3 shadow-sm border-primary">
         <Row>
           <Col md="12">
             <CardHeader>
-              <h4 className="d-inline-block">Create a post...</h4>
+              <h4 className="d-inline-block">
+                How can the village help you today?
+              </h4>
             </CardHeader>
             <Form onSubmit={this.onSubmitClick}>
               <CardBody>
-                <FormGroup>
-                  <Input
-                    type="text"
-                    name="title"
-                    placeholder="Title or subject"
-                    value={this.state.title}
-                    onChange={this.onChange}
-                    style={{ fontSize: '1.2rem' }}
-                    invalid={this.state.isInvalid.title}
-                  />
-                  <FormFeedback>{this.state.errorMsg.title}</FormFeedback>
-                </FormGroup>
-                <FormGroup>
-                  <Input
-                    type="textarea"
-                    name="text"
-                    placeholder="Enter text..."
-                    value={this.state.text}
-                    onChange={this.onChange}
-                    style={{ fontSize: '1.2rem' }}
-                    invalid={this.state.isInvalid.text}
-                  />
-                  <FormFeedback>{this.state.errorMsg.text}</FormFeedback>
-                </FormGroup>
-                <p className="lead">What would you like to post about today?</p>
                 <FormGroup check inline>
                   <Label check className="h6 mr-2">
                     <Input
@@ -207,7 +184,7 @@ class CreatePost extends Component {
                       checked={this.state.childcare}
                       onChange={this.onChange}
                     />
-                    Childcare/Babysitting
+                    Childcare
                   </Label>
                 </FormGroup>
                 <FormGroup check inline>
@@ -264,6 +241,31 @@ class CreatePost extends Component {
                     />
                     Other/Misc.
                   </Label>
+                </FormGroup>
+                <FormGroup className="mt-3">
+                  <Input
+                    type="text"
+                    name="title"
+                    placeholder="Title or subject"
+                    value={this.state.title}
+                    onChange={this.onChange}
+                    style={{ fontSize: '1.2rem' }}
+                    invalid={this.state.isInvalid.title}
+                  />
+                  <FormFeedback>{this.state.errorMsg.title}</FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    type="textarea"
+                    name="text"
+                    placeholder="Enter text..."
+                    rows="3"
+                    value={this.state.text}
+                    onChange={this.onChange}
+                    style={{ fontSize: '1.2rem' }}
+                    invalid={this.state.isInvalid.text}
+                  />
+                  <FormFeedback>{this.state.errorMsg.text}</FormFeedback>
                 </FormGroup>
               </CardBody>
               <CardFooter>

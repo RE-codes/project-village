@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import SignUp from './SignUp';
-import Login from './Login';
+import SignUp from '../auth/SignUp';
+import Login from '../auth/Login';
 
 class LandingPage extends Component {
   render() {

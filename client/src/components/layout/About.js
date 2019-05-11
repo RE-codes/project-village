@@ -13,12 +13,12 @@ const About = () => {
             <Col />
             <Col md="6" className="text-light text-left">
               <h1 className="text-light">About Project Village</h1>
-              <p>
-                Project Village came about as an effor to use social networking
+              <p className="lead">
+                Project Village came about as an effort to use social networking
                 to the advantage of families, particularly parents. There are
                 frequent and common necessities that all parents share.
               </p>
-              <p>
+              <p className="lead">
                 {' '}
                 Project Village is aimed at providing an avenue through which
                 families can rely on each other to help address these needs.

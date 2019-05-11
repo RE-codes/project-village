@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import logo from '../images/logo.png';
+import logo from '../../images/logo.png';
 
 class Header extends Component {
   state = {
@@ -42,7 +42,17 @@ class Header extends Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink tag={Link} to="/news-feed">
-                  News Feed
+                  Village Feed
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/map" disabled>
+                  My Village
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/about">
+                  About
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
@@ -62,16 +72,6 @@ class Header extends Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <NavItem>
-                <NavLink tag={Link} to="/map" disabled>
-                  My Village
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/about">
-                  About
-                </NavLink>
-              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
