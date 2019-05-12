@@ -1,98 +1,59 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Container, Row, Col, Button, Card } from 'reactstrap';
 import Post from './Post';
 import CreatePost from './CreatePost';
+import { getAllPosts } from '../../actions';
 
 class NewsFeed extends Component {
   state = {
-    posts: [
-      {
-        id: 1,
-        user: 'Rich',
-        text: 'This is a post. It says stuff and things.',
-        categories: [
-          'childcare',
-          'petcare',
-          'household',
-          'transportation',
-          'questions',
-          'other'
-        ],
-        rank: 'Member',
-        date: Date.now(),
-        likes: [
-          /* an array of user id's */
-        ],
-        comments: [
-          {
-            text: 'This is a comment. It says stuff, too.',
-            user: 'April',
-            date: Date.now()
-          },
-          {
-            text: 'This is a comment. It says stuff, too.',
-            user: 'Rich',
-            date: Date.now()
-          }
-        ]
-      },
-      {
-        id: 2,
-        user: 'April',
-        text: 'This is a post. It says stuff and things.',
-        categories: ['childcare', 'petcare', 'transportation'],
-        rank: 'Rockstar',
-        date: Date.now(),
-        likes: [1, 2, 3],
-        comments: [
-          {
-            text: 'This is a comment. It says stuff, too.',
-            user: 'April',
-            date: Date.now()
-          },
-          {
-            text: 'This is a comment. It says stuff, too.',
-            user: 'Rich',
-            date: Date.now()
-          }
-        ]
-      },
-      {
-        id: 3,
-        user: 'Harrison',
-        text: 'This is a post. It says stuff and things.',
-        categories: ['questions', 'other'],
-        rank: 'Youngster',
-        date: Date.now(),
-        likes: [1, 2],
-        comments: [
-          {
-            text: 'Go to bed!',
-            user: 'April',
-            date: Date.now()
-          },
-          {
-            text: 'You heard your mother!',
-            user: 'Rich',
-            date: Date.now()
-          }
-        ]
-      }
-    ]
+    sorted: false,
+    category: ''
+  };
+
+  componentDidMount = () => {
+    this.props.getAllPosts();
+  };
+
+  sortByCategory = category => {
+    if (category !== 'All') {
+      this.setState({
+        sorted: true,
+        category
+      });
+    } else {
+      this.setState({
+        sorted: false,
+        category: ''
+      });
+    }
   };
 
   render() {
+    const { posts } = this.props;
+    const categories = [
+      'All',
+      'Childcare',
+      'Pet Care',
+      'Household',
+      'Transportation',
+      'Questions',
+      'Other'
+    ];
     return (
       <Container className="pb-3">
         <Row>
           <Col lg={3} className="sidebar mb-3">
             <p className="lead mt-2">Filter posts by category</p>
-            <Button className="sidebar-button">Childcare</Button>
-            <Button className="sidebar-button">Pet Care</Button>
-            <Button className="sidebar-button">Household</Button>
-            <Button className="sidebar-button">Transportation</Button>
-            <Button className="sidebar-button">Questions</Button>
-            <Button className="sidebar-button">Other</Button>
+            {categories.map(category => (
+              <Button
+                key={category}
+                className="sidebar-button"
+                onClick={this.sortByCategory.bind(this, category)}
+              >
+                {category}
+              </Button>
+            ))}
           </Col>
           <Col lg={9} className="news-feed">
             <CreatePost />
@@ -100,9 +61,11 @@ class NewsFeed extends Component {
               <h3>Project Village Feed</h3>
             </Card>
             {/* Posts go here */}
-            {this.state.posts.map(post => (
-              <Post key={post.id} post={post} />
-            ))}
+            {this.state.sorted
+              ? posts
+                  .filter(post => post.categories.includes(this.state.category))
+                  .map(post => <Post key={post.id} post={post} />)
+              : posts.map(post => <Post key={post.id} post={post} />)}
           </Col>
         </Row>
       </Container>
@@ -110,4 +73,12 @@ class NewsFeed extends Component {
   }
 }
 
-export default NewsFeed;
+const mapStateToProps = state => ({
+  user: state.user,
+  posts: state.post.posts
+});
+
+export default connect(
+  mapStateToProps,
+  { getAllPosts }
+)(NewsFeed);

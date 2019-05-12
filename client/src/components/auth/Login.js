@@ -10,7 +10,7 @@ import {
   Input
 } from 'reactstrap';
 
-class SignUp extends Component {
+class Login extends Component {
   state = {
     modal: this.props.initialModalState,
     email: '',
@@ -201,4 +201,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Login;

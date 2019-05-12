@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addPost } from '../../actions';
 import {
   Row,
   Col,
@@ -68,7 +70,7 @@ class CreatePost extends Component {
 
   onSubmitClick = event => {
     event.preventDefault();
-
+    const { name } = this.props.user;
     const {
       text,
       title,
@@ -104,12 +106,13 @@ class CreatePost extends Component {
     let post = {
       title,
       text,
+      name,
       categories
     };
 
     if (this.validated(post)) {
       // Submit Form
-      console.log('submitted!', post);
+      this.props.addPost(post);
 
       //Reset State
       this.setState({
@@ -293,4 +296,11 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  { addPost }
+)(CreatePost);

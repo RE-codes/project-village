@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Comment from './Comment';
 import Moment from 'moment';
 import Collapse from 'react-collapse';
@@ -14,6 +15,7 @@ import {
   Input,
   Button
 } from 'reactstrap';
+import { addComment, getAllPosts } from '../../actions';
 
 class Post extends Component {
   state = {
@@ -40,17 +42,20 @@ class Post extends Component {
     });
   };
 
-  onCommentSubmitClick = event => {
-    event.preventDefault();
-
+  onCommentSubmitClick = postId => {
+    const { name, id } = this.props.user;
     const newComment = {
+      user: id,
+      name,
       text: this.state.text,
       date: Date.now()
     };
 
     if (newComment.text) {
       // submit new comment
-      console.log('submitted! ', newComment);
+      this.props.addComment(newComment, postId);
+      // get posts w/ new comment added
+      // this.props.getAllPosts();
       // reset state
       this.setState({
         text: ''
@@ -60,6 +65,7 @@ class Post extends Component {
 
   render() {
     const { post } = this.props;
+    const firstName = post.name ? post.name.split(' ')[0] : 'User';
     return (
       <React.Fragment>
         <Card className="post mt-3 shadow-sm">
@@ -67,37 +73,37 @@ class Post extends Component {
             <Col md="12">
               <CardHeader>
                 <div className="float-right">
-                  {post.categories.includes('childcare') && (
+                  {post.categories.includes('Childcare') && (
                     <i
                       className="fas fa-child ml-3 text-info"
                       title="Childcare"
                     />
                   )}
-                  {post.categories.includes('petcare') && (
+                  {post.categories.includes('Pet Care') && (
                     <i
                       className="fas fa-dog ml-3 text-active"
                       title="Pet Care"
                     />
                   )}
-                  {post.categories.includes('household') && (
+                  {post.categories.includes('Household') && (
                     <i
                       className="fas fa-home ml-3 text-success"
                       title="Household"
                     />
                   )}
-                  {post.categories.includes('transportation') && (
+                  {post.categories.includes('Transportation') && (
                     <i
                       className="fas fa-car-side ml-3 text-danger"
                       title="Transportation"
                     />
                   )}
-                  {post.categories.includes('questions') && (
+                  {post.categories.includes('Questions') && (
                     <i
                       className="fas fa-question ml-3 text-warning"
                       title="Question"
                     />
                   )}
-                  {post.categories.includes('other') && (
+                  {post.categories.includes('Other') && (
                     <i
                       className="fas fa-asterisk ml-3 text-dark"
                       title="Other/Misc."
@@ -107,7 +113,7 @@ class Post extends Component {
                 <p className="text-primary">
                   posted on: {Moment(post.date).format('LL')}
                 </p>
-                <h5 className="d-inline-block">{post.user} says:</h5>
+                <h5 className="d-inline-block">{firstName} says:</h5>
                 <p className="text-secondary float-right d-inline-block">
                   Village {post.rank}
                 </p>
@@ -119,7 +125,7 @@ class Post extends Component {
                 <Button color="light" className="like">
                   <i className="fas fa-thumbs-up text-primary" />
                   <span className="badge badge-light ml-1">
-                    {post.likes.length || null}
+                    {post.likes ? post.likes.length : null}
                   </span>
                 </Button>
                 <div className="pt-2 float-right">
@@ -140,7 +146,7 @@ class Post extends Component {
             <Row>
               <Col md="12">
                 <CardBody className="comment-divider">
-                  <Form onSubmit={this.onCommentSubmitClick}>
+                  <Form>
                     <Input
                       type="text"
                       name="text"
@@ -150,9 +156,11 @@ class Post extends Component {
                       className="mb-3"
                     />
                     <Button
+                      type="button"
                       size="sm"
                       color="primary"
                       className="rounded-button mr-2"
+                      onClick={this.onCommentSubmitClick.bind(this, post.id)}
                     >
                       Submit
                     </Button>
@@ -166,9 +174,11 @@ class Post extends Component {
                     </Button>
                   </Form>
                 </CardBody>
-                {this.props.post.comments.map((comment, index) => (
-                  <Comment key={index} comment={comment} />
-                ))}
+                {this.props.post.comments
+                  ? this.props.post.comments.map((comment, index) => (
+                      <Comment key={index} comment={comment} />
+                    ))
+                  : null}
               </Col>
             </Row>
           </Card>
@@ -178,4 +188,11 @@ class Post extends Component {
   }
 }
 
-export default Post;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  { addComment, getAllPosts }
+)(Post);
