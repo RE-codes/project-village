@@ -7,9 +7,11 @@ const About = () => {
       <div className="about-page-overlay">
         <Container>
           <Row className="about-tagline">
-            <h1 className="display-4 text-light">It takes a village...</h1>
+            <Col md="8">
+              <h1 className="display-4 text-light">It takes a village...</h1>
+            </Col>
           </Row>
-          <Row className="vertical-center">
+          <Row className="about-text">
             <Col />
             <Col md="6" className="text-light text-left">
               <h1 className="text-light">About Project Village</h1>

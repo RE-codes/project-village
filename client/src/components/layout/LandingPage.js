@@ -8,7 +8,7 @@ class LandingPage extends Component {
     return (
       <div className="landing-page">
         <div className="landing-page-overlay">
-          <Container>
+          <Container className="h-100">
             <Row className="vertical-center">
               <Col md="12" className="text-center">
                 <h1 className="display-3 text-light mb-4">Project Village</h1>

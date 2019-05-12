@@ -1,7 +1,9 @@
+import uuid from 'uuid';
+
 const db = {
   users: [
     {
-      id: 'user-1',
+      id: uuid(),
       name: 'Rich Eldridge',
       address: '1600 Pennsylvania Ave',
       city: 'Washington',
@@ -12,7 +14,7 @@ const db = {
       date: Date.now()
     },
     {
-      id: 'user-2',
+      id: uuid(),
       name: 'April Eldridge',
       address: '1600 Pennsylvania Ave',
       city: 'Washington',
@@ -23,7 +25,7 @@ const db = {
       date: Date.now()
     },
     {
-      id: 'user-3',
+      id: uuid(),
       name: 'Harrison Eldridge',
       address: '1600 Pennsylvania Ave',
       city: 'Washington',
@@ -34,7 +36,7 @@ const db = {
       date: Date.now()
     },
     {
-      id: 'user-4',
+      id: uuid(),
       name: 'Gwen Eldridge',
       address: '1600 Pennsylvania Ave',
       city: 'Washington',
@@ -47,7 +49,7 @@ const db = {
   ],
   posts: [
     {
-      id: 1,
+      id: uuid(),
       user: 'user-1',
       name: 'Rich Eldridge',
       text: 'This is a post. It says stuff and things.',
@@ -64,12 +66,14 @@ const db = {
       likes: ['user-2', 'user-3', 'user-4'],
       comments: [
         {
+          id: uuid(),
           user: 'user-2',
           name: 'April Eldridge',
           text: 'This is a comment. It says stuff, too.',
           date: Date.now()
         },
         {
+          id: uuid(),
           user: 'user-1',
           name: 'Rich Eldridge',
           text: 'This is replying to the first comment. It says stuff, too.',
@@ -78,7 +82,7 @@ const db = {
       ]
     },
     {
-      id: 2,
+      id: uuid(),
       user: 'user-2',
       name: 'April Eldridge',
       text: 'This is a post. It says stuff and things.',
@@ -88,12 +92,14 @@ const db = {
       likes: ['user-3', 'user-4'],
       comments: [
         {
+          id: uuid(),
           user: 'user-2',
           name: 'April Eldridge',
           text: 'This is a comment. It says stuff, too.',
           date: Date.now()
         },
         {
+          id: uuid(),
           user: 'user-1',
           name: 'Rich Eldridge',
           text: 'This is another comment. It says stuff, too.',
@@ -102,7 +108,7 @@ const db = {
       ]
     },
     {
-      id: 3,
+      id: uuid(),
       user: 'user-3',
       name: 'Harrison Eldridge',
       text: 'This is a post. It says stuff and things.',
@@ -112,12 +118,14 @@ const db = {
       likes: ['user-1', 'user-2', 'user-3'],
       comments: [
         {
+          id: uuid(),
           user: 'user-2',
           name: 'April Eldridge',
           text: 'Go to bed!',
           date: Date.now()
         },
         {
+          id: uuid(),
           user: 'user-1',
           name: 'Rich Eldridge',
           text: 'You heard your mother!',
@@ -126,7 +134,7 @@ const db = {
       ]
     },
     {
-      id: 4,
+      id: uuid(),
       user: 'user-4',
       name: 'Gwen Eldridge',
       text: 'This is a post. It says stuff and things.',
@@ -136,12 +144,14 @@ const db = {
       likes: ['user-1', 'user-2', 'user-3'],
       comments: [
         {
+          id: uuid(),
           user: 'user-2',
           name: 'April Elridge',
           text: 'Go to bed!',
           date: Date.now()
         },
         {
+          id: uuid(),
           user: 'user-1',
           name: 'Rich Eldridge',
           text: 'You heard your mother!',

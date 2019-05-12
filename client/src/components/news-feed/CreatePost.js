@@ -15,6 +15,7 @@ import {
   FormFeedback,
   Button
 } from 'reactstrap';
+import uuid from 'uuid';
 
 class CreatePost extends Component {
   state = {
@@ -70,7 +71,8 @@ class CreatePost extends Component {
 
   onSubmitClick = event => {
     event.preventDefault();
-    const { name } = this.props.user;
+    const { name } = this.props.user.user;
+
     const {
       text,
       title,
@@ -104,6 +106,7 @@ class CreatePost extends Component {
     }
 
     let post = {
+      id: uuid(),
       title,
       text,
       name,

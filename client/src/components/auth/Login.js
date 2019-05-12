@@ -74,6 +74,7 @@ class Login extends Component {
       this.props.login(loggedUser);
 
       this.toggle();
+
       // redirect to news-feed
       this.props.history.push('/news-feed');
 

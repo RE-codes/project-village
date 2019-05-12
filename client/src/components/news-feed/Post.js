@@ -16,6 +16,7 @@ import {
   Button
 } from 'reactstrap';
 import { addComment, getAllPosts } from '../../actions';
+import uuid from 'uuid';
 
 class Post extends Component {
   state = {
@@ -43,8 +44,9 @@ class Post extends Component {
   };
 
   onCommentSubmitClick = postId => {
-    const { name, id } = this.props.user;
+    const { name, id } = this.props.user.user;
     const newComment = {
+      id: uuid(),
       user: id,
       name,
       text: this.state.text,
@@ -54,8 +56,7 @@ class Post extends Component {
     if (newComment.text) {
       // submit new comment
       this.props.addComment(newComment, postId);
-      // get posts w/ new comment added
-      // this.props.getAllPosts();
+
       // reset state
       this.setState({
         text: ''

@@ -8,6 +8,8 @@ export const login = loggedUser => dispatch => {
   }
 
   if (existingUser.password === loggedUser.password) {
+    localStorage.setItem('user', existingUser.email);
+
     dispatch({
       type: SET_CURRENT_USER,
       payload: existingUser
@@ -16,9 +18,20 @@ export const login = loggedUser => dispatch => {
 };
 
 export const logoutCurrentUser = () => dispatch => {
+  localStorage.removeItem('user');
+
   dispatch({
     type: SET_CURRENT_USER,
     payload: {}
+  });
+};
+
+export const setCurrentUser = email => dispatch => {
+  const user = db.users.find(user => email === user.email);
+
+  dispatch({
+    type: SET_CURRENT_USER,
+    payload: user
   });
 };
 
@@ -42,7 +55,7 @@ export const addComment = (comment, postId) => dispatch => {
   posts.map(post => {
     if (postId === post.id) {
       // add the comment
-      post.comments.push(comment);
+      post.comments.unshift(comment);
     }
     return posts;
   });
