@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Button,
   Modal,
@@ -9,6 +11,7 @@ import {
   FormFeedback,
   Input
 } from 'reactstrap';
+import { login } from '../../actions';
 
 class Login extends Component {
   state = {
@@ -67,9 +70,12 @@ class Login extends Component {
 
     if (this.validated(loggedUser)) {
       // Submit Form
-      console.log('submitted!', loggedUser);
+      // set the current user
+      this.props.login(loggedUser);
 
       this.toggle();
+      // redirect to news-feed
+      this.props.history.push('/news-feed');
 
       //Reset State
       this.setState({
@@ -201,4 +207,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(withRouter(Login));

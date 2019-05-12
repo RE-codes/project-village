@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { logoutCurrentUser } from '../../actions';
 import { Link } from 'react-router-dom';
 import {
   Collapse,
@@ -22,6 +24,10 @@ class Header extends Component {
 
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  onLogoutClick = () => {
+    this.props.logoutCurrentUser();
   };
 
   render() {
@@ -67,7 +73,7 @@ class Header extends Component {
                     Edit Profile
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem tag={Link} to="/">
+                  <DropdownItem tag={Link} to="/" onClick={this.onLogoutClick}>
                     Log Out
                   </DropdownItem>
                 </DropdownMenu>
@@ -80,4 +86,7 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default connect(
+  null,
+  { logoutCurrentUser }
+)(Header);
