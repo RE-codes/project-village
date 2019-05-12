@@ -43,7 +43,7 @@ class SidebarMap extends Component {
         style={{ height: '67vh', marginTop: '2rem', marginBottom: '2rem' }}
       >
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyCUrK2NlmY72Y620bmfkGvJzra1wIN32uw' }}
+          bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAP_KEY }}
           center={this.state.myCoords}
           defaultZoom={14}
         >
