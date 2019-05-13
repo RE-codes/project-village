@@ -29,8 +29,18 @@ class NewsFeed extends Component {
     }
   };
 
+  renderPosts = posts => {
+    console.log('posts array =', posts);
+
+    const postContent = this.state.sorted
+      ? posts
+          .filter(post => post.categories.includes(this.state.category))
+          .map(post => <Post key={post._id} post={post} />)
+      : posts.map(post => <Post key={post._id} post={post} />);
+    return postContent;
+  };
+
   render() {
-    const { posts } = this.props;
     const categories = [
       'All',
       'Childcare',
@@ -61,16 +71,8 @@ class NewsFeed extends Component {
             <Card className="mt-4 mb-2 p-2 bg-primary text-light shadow-sm text-center feed-header">
               <h3>Project Village Feed</h3>
             </Card>
+            {this.renderPosts(this.props.post.posts)}
             {/* Posts go here */}
-            {posts
-              ? this.state.sorted
-                ? posts
-                    .filter(post =>
-                      post.categories.includes(this.state.category)
-                    )
-                    .map(post => <Post key={post._id} post={post} />)
-                : posts.map(post => <Post key={post._id} post={post} />)
-              : null}
           </Col>
         </Row>
       </Container>
@@ -80,7 +82,7 @@ class NewsFeed extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  posts: state.post.posts
+  post: state.post
 });
 
 export default connect(
