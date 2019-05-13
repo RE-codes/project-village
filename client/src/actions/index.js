@@ -70,12 +70,4 @@ export const addComment = (comment, postId) => dispatch => {
       dispatch(getAllPosts());
     })
     .catch(err => console.error(err));
-  // const posts = res.data;
-  // posts.map(post => {
-  //   if (postId === post.id) {
-  //     // add the comment
-  //     post.comments.unshift(comment);
-  //   }
-  //   return posts;
-  // });
 };
