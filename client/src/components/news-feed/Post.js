@@ -11,12 +11,10 @@ import {
   CardBody,
   CardText,
   CardFooter,
-  Form,
   Input,
   Button
 } from 'reactstrap';
 import { addComment, getAllPosts } from '../../actions';
-import uuid from 'uuid';
 
 class Post extends Component {
   state = {
@@ -46,11 +44,9 @@ class Post extends Component {
   onCommentSubmitClick = postId => {
     const { name, id } = this.props.user.user;
     const newComment = {
-      id: uuid(),
       user: id,
       name,
-      text: this.state.text,
-      date: Date.now()
+      text: this.state.text
     };
 
     if (newComment.text) {
@@ -114,10 +110,11 @@ class Post extends Component {
                 <p className="text-primary">
                   posted on: {Moment(post.date).format('LL')}
                 </p>
-                <h5 className="d-inline-block">{firstName} says:</h5>
                 <p className="text-secondary float-right d-inline-block">
-                  Village {post.rank}
+                  Village {post.rank ? post.rank : 'Member'}
                 </p>
+                <p className="d-inline-block lead">{firstName} says:</p>
+                <p className="lead font-weight-bold pl-3">{post.title}</p>
               </CardHeader>
               <CardBody>
                 <CardText className="post lead">{post.text}</CardText>
@@ -147,37 +144,35 @@ class Post extends Component {
             <Row>
               <Col md="12">
                 <CardBody className="comment-divider">
-                  <Form>
-                    <Input
-                      type="text"
-                      name="text"
-                      placeholder="Leave a reply..."
-                      value={this.state.text}
-                      onChange={this.onChange}
-                      className="mb-3"
-                    />
-                    <Button
-                      type="button"
-                      size="sm"
-                      color="primary"
-                      className="rounded-button mr-2"
-                      onClick={this.onCommentSubmitClick.bind(this, post.id)}
-                    >
-                      Submit
-                    </Button>
-                    <Button
-                      size="sm"
-                      color="secondary"
-                      className="rounded-button"
-                      onClick={this.onClearClick}
-                    >
-                      Clear
-                    </Button>
-                  </Form>
+                  <Input
+                    type="text"
+                    name="text"
+                    placeholder="Leave a reply..."
+                    value={this.state.text}
+                    onChange={this.onChange}
+                    className="mb-3"
+                  />
+                  <Button
+                    type="button"
+                    size="sm"
+                    color="primary"
+                    className="rounded-button mr-2"
+                    onClick={this.onCommentSubmitClick.bind(this, post._id)}
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    size="sm"
+                    color="secondary"
+                    className="rounded-button"
+                    onClick={this.onClearClick}
+                  >
+                    Clear
+                  </Button>
                 </CardBody>
                 {this.props.post.comments
                   ? this.props.post.comments.map((comment, index) => (
-                      <Comment key={index} comment={comment} />
+                      <Comment key={comment._id} comment={comment} />
                     ))
                   : null}
               </Col>

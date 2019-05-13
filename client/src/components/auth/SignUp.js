@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Button,
   Modal,
@@ -9,6 +11,7 @@ import {
   FormFeedback,
   Input
 } from 'reactstrap';
+import { signUp } from '../../actions';
 
 class SignUp extends Component {
   state = {
@@ -81,7 +84,7 @@ class SignUp extends Component {
 
     if (this.validated(newUser)) {
       // Submit Form
-      console.log('submitted!', newUser);
+      this.props.signUp(newUser, this.props.history);
 
       this.toggle();
 
@@ -275,4 +278,7 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default connect(
+  null,
+  { signUp }
+)(withRouter(SignUp));

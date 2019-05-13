@@ -18,8 +18,8 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 
-if (localStorage.getItem('user')) {
-  const user = localStorage.getItem('user');
+if (localStorage.user) {
+  const user = JSON.parse(localStorage.getItem('user'));
   store.dispatch(setCurrentUser(user));
 }
 

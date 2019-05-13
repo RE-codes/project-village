@@ -64,8 +64,8 @@ class NewsFeed extends Component {
             {this.state.sorted
               ? posts
                   .filter(post => post.categories.includes(this.state.category))
-                  .map(post => <Post key={post.id} post={post} />)
-              : posts.map(post => <Post key={post.id} post={post} />)}
+                  .map(post => <Post key={post._id} post={post} />)
+              : posts.map(post => <Post key={post._id} post={post} />)}
           </Col>
         </Row>
       </Container>

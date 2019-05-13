@@ -70,13 +70,9 @@ class Login extends Component {
 
     if (this.validated(loggedUser)) {
       // Submit Form
-      // set the current user
-      this.props.login(loggedUser);
+      this.props.login(loggedUser, this.props.history);
 
       this.toggle();
-
-      // redirect to news-feed
-      this.props.history.push('/news-feed');
 
       //Reset State
       this.setState({
