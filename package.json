@@ -4,11 +4,13 @@
   "description": "A social network app for families",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "client": "npm run start --prefix client",
     "server": "node server.js",
     "program": "concurrently \"npm run server\" \"npm run client\"",
     "dev-serve": "nodemon server.js",
-    "dev": "concurrently \"npm run dev-serve\" \"npm run client\""
+    "dev": "concurrently \"npm run dev-serve\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Rich Eldridge",
   "license": "ISC",
@@ -18,5 +20,9 @@
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "mongoose": "^5.5.7"
+  },
+  "engines": {
+    "node": "8.1.1",
+    "npm": "5.0.3"
   }
 }
