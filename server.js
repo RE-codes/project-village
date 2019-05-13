@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 dotenv.config();
 
@@ -8,6 +9,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const keys = require('./config/keys');
+
+app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
