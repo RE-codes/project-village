@@ -61,7 +61,7 @@ class NewsFeed extends Component {
               <h3>Project Village Feed</h3>
             </Card>
             {/* Posts go here */}
-            {this.state.sorted
+            {posts && this.state.sorted
               ? posts
                   .filter(post => post.categories.includes(this.state.category))
                   .map(post => <Post key={post._id} post={post} />)
