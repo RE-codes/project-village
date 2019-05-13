@@ -57,12 +57,7 @@ router.post('/comment/:postId', (req, res) => {
       // push to comments array
       post.comments.unshift(newComment);
       // save to db
-      post.save().then(
-        // return the posts collection
-        Post.find()
-          .sort({ date: -1 })
-          .then(posts => res.json(posts))
-      );
+      post.save().then(p => res.json(p));
     })
     .catch(err => console.error(err));
 });

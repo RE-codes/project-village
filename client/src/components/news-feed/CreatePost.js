@@ -182,7 +182,7 @@ class CreatePost extends Component {
             <Form onSubmit={this.onSubmitClick}>
               <CardBody>
                 <FormGroup check inline>
-                  <Label check className="h6 mr-2">
+                  <Label check className="h6 mr-1">
                     <Input
                       type="checkbox"
                       name="childcare"
@@ -193,7 +193,7 @@ class CreatePost extends Component {
                   </Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Label check className="h6 mr-2">
+                  <Label check className="h6 mr-1">
                     <Input
                       type="checkbox"
                       name="petcare"
@@ -204,7 +204,7 @@ class CreatePost extends Component {
                   </Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Label check className="h6 mr-2">
+                  <Label check className="h6 mr-1">
                     <Input
                       type="checkbox"
                       name="household"
@@ -215,7 +215,7 @@ class CreatePost extends Component {
                   </Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Label check className="h6 mr-2">
+                  <Label check className="h6 mr-1">
                     <Input
                       type="checkbox"
                       name="transportation"
@@ -226,7 +226,7 @@ class CreatePost extends Component {
                   </Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Label check className="h6 mr-2">
+                  <Label check className="h6 mr-1">
                     <Input
                       type="checkbox"
                       name="questions"
@@ -237,7 +237,7 @@ class CreatePost extends Component {
                   </Label>
                 </FormGroup>
                 <FormGroup check inline>
-                  <Label check className="h6 mr-2">
+                  <Label check className="h6 mr-1">
                     <Input
                       type="checkbox"
                       name="other"

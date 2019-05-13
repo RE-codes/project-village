@@ -61,8 +61,6 @@ class Post extends Component {
   };
 
   onDeleteClick = postId => {
-    console.log(postId);
-
     this.props.deletePost(postId);
   };
 
@@ -78,52 +76,52 @@ class Post extends Component {
                 <div className="float-right">
                   {post.categories.includes('Childcare') && (
                     <i
-                      className="fas fa-child ml-3 text-info"
+                      className="fas fa-child fa-2x ml-3 text-info"
                       title="Childcare"
                     />
                   )}
                   {post.categories.includes('Pet Care') && (
                     <i
-                      className="fas fa-dog ml-3 text-active"
+                      className="fas fa-dog fa-2x ml-3 text-active"
                       title="Pet Care"
                     />
                   )}
                   {post.categories.includes('Household') && (
                     <i
-                      className="fas fa-home ml-3 text-success"
+                      className="fas fa-home fa-2x ml-3 text-success"
                       title="Household"
                     />
                   )}
                   {post.categories.includes('Transportation') && (
                     <i
-                      className="fas fa-car-side ml-3 text-danger"
+                      className="fas fa-car-side fa-2x ml-3 text-danger"
                       title="Transportation"
                     />
                   )}
                   {post.categories.includes('Questions') && (
                     <i
-                      className="fas fa-question ml-3 text-warning"
+                      className="fas fa-question fa-2x ml-3 text-warning"
                       title="Question"
                     />
                   )}
                   {post.categories.includes('Other') && (
                     <i
-                      className="fas fa-asterisk ml-3 text-dark"
+                      className="fas fa-asterisk fa-2x ml-3 text-dark"
                       title="Other/Misc."
                     />
                   )}
                 </div>
-                <p className="text-primary">
+                <p className="text-primary small post-date">
                   posted on: {Moment(post.date).format('LL')}
                 </p>
-                <p className="text-secondary float-right d-inline-block">
+                <p className="text-secondary float-right d-inline-block post-rank">
                   Village {post.rank ? post.rank : 'Member'}
                 </p>
-                <p className="d-inline-block lead">{firstName} says:</p>
-                <p className="lead font-weight-bold pl-3">{post.title}</p>
+                <p className="d-inline-block post-name">{firstName} says:</p>
+                <h5 className="pl-4 pt-1 post-title">{post.title}</h5>
               </CardHeader>
               <CardBody>
-                <CardText className="post lead">{post.text}</CardText>
+                <CardText className="post-text lead">{post.text}</CardText>
               </CardBody>
               <CardFooter>
                 <Button color="light" className="like">

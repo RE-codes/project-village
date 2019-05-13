@@ -31,7 +31,6 @@ class NewsFeed extends Component {
 
   renderPosts = posts => {
     if (posts) {
-      console.log('posts array =', posts);
       const postContent = this.state.sorted
         ? posts
             .filter(post => post.categories.includes(this.state.category))

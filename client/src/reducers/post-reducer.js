@@ -21,17 +21,21 @@ export default (state = initialState, action) => {
         posts: [action.payload, ...state.posts]
       };
     case ADD_COMMENT:
-      return {
-        ...state,
-        posts: action.payload
-      };
-    case DELETE_POST:
-      const newState = state.posts.filter(
-        post => post._id !== action.payload._id
-      );
+      const newState = [...state.posts];
+      newState.map((post, index) => {
+        post._id === action.payload._id
+          ? (newState[index] = action.payload)
+          : (newState[index] = post);
+        return newState;
+      });
       return {
         ...state,
         posts: newState
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== action.payload._id)
       };
     default:
       return state;

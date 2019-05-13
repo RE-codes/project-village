@@ -57,12 +57,16 @@
   display: none;
 }
 
-.comment {
-  border-bottom: 1px solid #e3e3e3;
+.post-name, .post-rank, .post-title {
+  margin-bottom: 0;
 }
 
-.comment-text {
+.post-text {
   font-size: 1.1rem;
+}
+
+.comment {
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .comment-divider {

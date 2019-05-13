@@ -1,4 +1,10 @@
-import { SET_CURRENT_USER, GET_POSTS, ADD_POST, DELETE_POST } from './types';
+import {
+  SET_CURRENT_USER,
+  GET_POSTS,
+  ADD_POST,
+  DELETE_POST,
+  ADD_COMMENT
+} from './types';
 import axios from 'axios';
 
 export const signUp = (newUser, history) => dispatch => {
@@ -79,7 +85,10 @@ export const addComment = (comment, postId) => dispatch => {
   axios
     .post(`/api/posts/comment/${postId}`, comment)
     .then(res => {
-      dispatch(getAllPosts());
+      dispatch({
+        type: ADD_COMMENT,
+        payload: res.data
+      });
     })
     .catch(err => console.error(err));
 };
