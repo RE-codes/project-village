@@ -14,7 +14,7 @@ import VillageMap from './components/map/VillageMap';
 import Footer from './components/layout/Footer';
 import PrivateRoute from './components/auth/PrivateRoute';
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 
