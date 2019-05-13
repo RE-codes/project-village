@@ -68,7 +68,7 @@ class CreatePost extends Component {
     });
   };
 
-  onSubmitClick = event => {
+  onSubmitClick = async event => {
     event.preventDefault();
     const { name } = this.props.user.user;
 
@@ -114,7 +114,7 @@ class CreatePost extends Component {
 
     if (this.validated(post)) {
       // Submit Form
-      this.props.addPost(post);
+      await this.props.addPost(post);
 
       //Reset State
       this.setState({

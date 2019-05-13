@@ -30,14 +30,16 @@ class NewsFeed extends Component {
   };
 
   renderPosts = posts => {
-    console.log('posts array =', posts);
+    if (posts) {
+      console.log('posts array =', posts);
+      const postContent = this.state.sorted
+        ? posts
+            .filter(post => post.categories.includes(this.state.category))
+            .map(post => <Post key={post._id} post={post} />)
+        : posts.map(post => <Post key={post._id} post={post} />);
 
-    const postContent = this.state.sorted
-      ? posts
-          .filter(post => post.categories.includes(this.state.category))
-          .map(post => <Post key={post._id} post={post} />)
-      : posts.map(post => <Post key={post._id} post={post} />);
-    return postContent;
+      return postContent;
+    }
   };
 
   render() {
