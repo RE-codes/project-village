@@ -30,6 +30,18 @@ router.post('/', (req, res) => {
   newPost.save().then(post => res.json(post));
 });
 
+// @route   DELETE /api/posts
+// @desc    delete post by id
+// @access  Private
+router.delete('/:postId', (req, res) => {
+  // Find post by id
+  Post.findByIdAndDelete(req.params.postId)
+    .then(post => {
+      res.json(post);
+    })
+    .catch(err => console.error(err));
+});
+
 // @route   POST /api/posts/comment/:postId
 // @desc    add comment
 // @access  Private
@@ -46,6 +58,7 @@ router.post('/comment/:postId', (req, res) => {
       post.comments.unshift(newComment);
       // save to db
       post.save().then(
+        // return the posts collection
         Post.find()
           .sort({ date: -1 })
           .then(posts => res.json(posts))

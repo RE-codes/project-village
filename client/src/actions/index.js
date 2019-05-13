@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, GET_POSTS, ADD_POST } from './types';
+import { SET_CURRENT_USER, GET_POSTS, ADD_POST, DELETE_POST } from './types';
 import axios from 'axios';
 
 export const signUp = (newUser, history) => dispatch => {
@@ -57,6 +57,18 @@ export const addPost = post => dispatch => {
     .then(res => {
       dispatch({
         type: ADD_POST,
+        payload: res.data
+      });
+    })
+    .catch(err => console.error(err));
+};
+
+export const deletePost = postId => dispatch => {
+  axios
+    .delete(`/api/posts/${postId}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_POST,
         payload: res.data
       });
     })

@@ -14,7 +14,7 @@ import {
   Input,
   Button
 } from 'reactstrap';
-import { addComment, getAllPosts } from '../../actions';
+import { addComment, getAllPosts, deletePost } from '../../actions';
 
 class Post extends Component {
   state = {
@@ -58,6 +58,12 @@ class Post extends Component {
         text: ''
       });
     }
+  };
+
+  onDeleteClick = postId => {
+    console.log(postId);
+
+    this.props.deletePost(postId);
   };
 
   render() {
@@ -134,6 +140,16 @@ class Post extends Component {
                     Comments
                   </Button>
                 </div>
+                {post.user === this.props.user.user.id ? (
+                  <div className="pt-2 float-right">
+                    <Button
+                      className="btn btn-secondary text-danger bg-transparent comments-button border-0"
+                      onClick={this.onDeleteClick.bind(this, post._id)}
+                    >
+                      Delete Post
+                    </Button>
+                  </div>
+                ) : null}
               </CardFooter>
             </Col>
           </Row>
@@ -190,5 +206,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addComment, getAllPosts }
+  { addComment, getAllPosts, deletePost }
 )(Post);
