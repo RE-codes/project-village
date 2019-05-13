@@ -10,7 +10,7 @@
     "program": "concurrently \"npm run server\" \"npm run client\"",
     "dev-serve": "nodemon server.js",
     "dev": "concurrently \"npm run dev-serve\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install client && npm run build client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },
   "author": "Rich Eldridge",
   "license": "ISC",
