@@ -78,4 +78,24 @@ router.delete('/comment/:postId/:commentId', (req, res) => {
     .catch(err => console.error(err));
 });
 
+// @route   POST /api/posts/like/:postId/:userId
+// @desc    add like
+// @access  Private
+router.post('/like/:postId/:userId', (req, res) => {
+  // Find post by id
+  Post.findById(req.params.postId)
+    .then(post => {
+      // check if user id already exists in the likes array
+      if (post.likes.some(like => like.user.equals(req.params.userId))) {
+        return res.status(200).json({ error: 'already liked' });
+      }
+      // add like to likes array
+      post.likes.push({ user: req.params.userId });
+
+      // save to db
+      post.save().then(p => res.json(p));
+    })
+    .catch(err => console.error(err));
+});
+
 module.exports = router;

@@ -14,7 +14,7 @@ import {
   Input,
   Button
 } from 'reactstrap';
-import { addComment, getAllPosts, deletePost } from '../../actions';
+import { addComment, getAllPosts, deletePost, addLike } from '../../actions';
 
 class Post extends Component {
   state = {
@@ -62,6 +62,10 @@ class Post extends Component {
 
   onDeleteClick = postId => {
     this.props.deletePost(postId);
+  };
+
+  onLikeClick = (postId, userId) => {
+    this.props.addLike(postId, userId);
   };
 
   render() {
@@ -124,10 +128,20 @@ class Post extends Component {
                 <CardText className="post-text lead">{post.text}</CardText>
               </CardBody>
               <CardFooter>
-                <Button color="light" className="like">
+                <Button
+                  color="light"
+                  className="like"
+                  onClick={this.onLikeClick.bind(
+                    this,
+                    post._id,
+                    this.props.user.user.id
+                  )}
+                >
                   <i className="fas fa-thumbs-up text-primary" />
                   <span className="badge badge-light ml-1">
-                    {post.likes ? post.likes.length : null}
+                    {post.likes && post.likes.length > 0
+                      ? post.likes.length
+                      : null}
                   </span>
                 </Button>
                 <div className="pt-2 float-right">
@@ -208,5 +222,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addComment, getAllPosts, deletePost }
+  { addComment, getAllPosts, deletePost, addLike }
 )(Post);

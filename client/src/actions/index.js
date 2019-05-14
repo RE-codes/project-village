@@ -4,7 +4,8 @@ import {
   ADD_POST,
   DELETE_POST,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  ADD_LIKE
 } from './types';
 import axios from 'axios';
 
@@ -100,6 +101,18 @@ export const deleteComment = (postId, commentId) => dispatch => {
     .then(res => {
       dispatch({
         type: DELETE_COMMENT,
+        payload: res.data
+      });
+    })
+    .catch(err => console.error(err));
+};
+
+export const addLike = (postId, userId) => dispatch => {
+  axios
+    .post(`/api/posts/like/${postId}/${userId}`)
+    .then(res => {
+      dispatch({
+        type: ADD_LIKE,
         payload: res.data
       });
     })

@@ -3,7 +3,8 @@ import {
   ADD_POST,
   ADD_COMMENT,
   DELETE_POST,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  ADD_LIKE
 } from '../actions/types';
 
 const initialState = {
@@ -49,6 +50,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: deleteCommentState
+      };
+    case ADD_LIKE:
+      const addLikeState = [...state.posts];
+      addLikeState.map((post, index) => {
+        post._id === action.payload._id
+          ? (addLikeState[index] = action.payload)
+          : (addLikeState[index] = post);
+        return addLikeState;
+      });
+      return {
+        ...state,
+        posts: addLikeState
       };
     default:
       return state;
