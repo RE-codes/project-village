@@ -121,7 +121,7 @@
   transition-duration: 0.3s;
 }
 
-.unlike:hover i {
+.delete-comment:hover i {
   transform: scale(1.5);
   transition-duration: 0.3s;
 }

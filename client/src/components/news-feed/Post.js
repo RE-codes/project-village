@@ -186,7 +186,11 @@ class Post extends Component {
                 </CardBody>
                 {this.props.post.comments
                   ? this.props.post.comments.map((comment, index) => (
-                      <Comment key={comment._id} comment={comment} />
+                      <Comment
+                        key={comment._id}
+                        comment={comment}
+                        postId={post._id}
+                      />
                     ))
                   : null}
               </Col>

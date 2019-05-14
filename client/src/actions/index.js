@@ -3,7 +3,8 @@ import {
   GET_POSTS,
   ADD_POST,
   DELETE_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  DELETE_COMMENT
 } from './types';
 import axios from 'axios';
 
@@ -87,6 +88,18 @@ export const addComment = (comment, postId) => dispatch => {
     .then(res => {
       dispatch({
         type: ADD_COMMENT,
+        payload: res.data
+      });
+    })
+    .catch(err => console.error(err));
+};
+
+export const deleteComment = (postId, commentId) => dispatch => {
+  axios
+    .delete(`/api/posts/comment/${postId}/${commentId}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_COMMENT,
         payload: res.data
       });
     })

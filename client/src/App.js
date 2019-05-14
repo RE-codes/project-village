@@ -35,7 +35,7 @@ class App extends Component {
             <PrivateRoute path="/news-feed" component={NewsFeed} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute path="/edit-profile" component={EditProfile} />
-            <Route path="/map" component={VillageMap} />
+            <PrivateRoute path="/map" component={VillageMap} />
           </Switch>
           <Footer />
         </Router>

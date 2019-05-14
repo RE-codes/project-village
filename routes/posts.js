@@ -62,4 +62,20 @@ router.post('/comment/:postId', (req, res) => {
     .catch(err => console.error(err));
 });
 
+// @route   DELETE /api/posts/comment/:postId/:commentId
+// @desc    add comment
+// @access  Private
+router.delete('/comment/:postId/:commentId', (req, res) => {
+  // Find post by id
+  Post.findById(req.params.postId)
+    .then(post => {
+      // remove comment by id
+      post.comments.id(req.params.commentId).remove();
+
+      // save to db
+      post.save().then(p => res.json(p));
+    })
+    .catch(err => console.error(err));
+});
+
 module.exports = router;

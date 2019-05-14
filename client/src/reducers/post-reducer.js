@@ -2,7 +2,8 @@ import {
   GET_POSTS,
   ADD_POST,
   ADD_COMMENT,
-  DELETE_POST
+  DELETE_POST,
+  DELETE_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -21,21 +22,33 @@ export default (state = initialState, action) => {
         posts: [action.payload, ...state.posts]
       };
     case ADD_COMMENT:
-      const newState = [...state.posts];
-      newState.map((post, index) => {
+      const addCommentState = [...state.posts];
+      addCommentState.map((post, index) => {
         post._id === action.payload._id
-          ? (newState[index] = action.payload)
-          : (newState[index] = post);
-        return newState;
+          ? (addCommentState[index] = action.payload)
+          : (addCommentState[index] = post);
+        return addCommentState;
       });
       return {
         ...state,
-        posts: newState
+        posts: addCommentState
       };
     case DELETE_POST:
       return {
         ...state,
         posts: state.posts.filter(post => post._id !== action.payload._id)
+      };
+    case DELETE_COMMENT:
+      const deleteCommentState = [...state.posts];
+      deleteCommentState.map((post, index) => {
+        post._id === action.payload._id
+          ? (deleteCommentState[index] = action.payload)
+          : (deleteCommentState[index] = post);
+        return deleteCommentState;
+      });
+      return {
+        ...state,
+        posts: deleteCommentState
       };
     default:
       return state;
