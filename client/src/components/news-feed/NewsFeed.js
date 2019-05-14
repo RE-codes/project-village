@@ -57,15 +57,17 @@ class NewsFeed extends Component {
         <Row>
           <Col lg={3} className="sidebar mb-3">
             <p className="lead mt-2">Filter posts by category</p>
-            {categories.map(category => (
-              <Button
-                key={category}
-                className="sidebar-button"
-                onClick={this.sortByCategory.bind(this, category)}
-              >
-                {category}
-              </Button>
-            ))}
+            <Card className="border-0 shadow-sm">
+              {categories.map(category => (
+                <Button
+                  key={category}
+                  className="sidebar-button"
+                  onClick={this.sortByCategory.bind(this, category)}
+                >
+                  {category}
+                </Button>
+              ))}
+            </Card>
           </Col>
           <Col lg={9} className="news-feed">
             <CreatePost />

@@ -73,6 +73,10 @@
   border-bottom: 1px solid #e3e3e3;
 }
 
+.comment-divider:last-child {
+  border-bottom: none;
+}
+
 .comments-button:hover {
   text-decoration: underline;
 }
@@ -104,11 +108,11 @@
 }
 
 .sidebar-button:first-of-type {
-  border-radius: 10px 10px 0 0;
+  border-radius: 7px 7px 0 0;
 }
 
 .sidebar-button:last-of-type {
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 7px 7px;
 }
 
 .footer {

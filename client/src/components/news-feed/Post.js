@@ -154,7 +154,7 @@ class Post extends Component {
         </Card>
         {/* comments section */}
         <Collapse isOpened={this.state.isOpened}>
-          <Card className="comment">
+          <Card className="comment shadow-sm">
             <Row>
               <Col md="12">
                 <CardBody className="comment-divider">
