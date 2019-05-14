@@ -41,7 +41,7 @@ class Post extends Component {
     });
   };
 
-  onCommentSubmitClick = async postId => {
+  onCommentSubmitClick = postId => {
     const { name, id } = this.props.user.user;
     const newComment = {
       user: id,
@@ -51,7 +51,7 @@ class Post extends Component {
 
     if (newComment.text) {
       // submit new comment
-      await this.props.addComment(newComment, postId);
+      this.props.addComment(newComment, postId);
 
       // reset state
       this.setState({

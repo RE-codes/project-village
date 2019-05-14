@@ -68,7 +68,7 @@ class CreatePost extends Component {
     });
   };
 
-  onSubmitClick = async event => {
+  onSubmitClick = event => {
     event.preventDefault();
     const { name } = this.props.user.user;
 
@@ -114,7 +114,7 @@ class CreatePost extends Component {
 
     if (this.validated(post)) {
       // Submit Form
-      await this.props.addPost(post);
+      this.props.addPost(post);
 
       //Reset State
       this.setState({
@@ -170,14 +170,16 @@ class CreatePost extends Component {
   };
 
   render() {
+    const { name } = this.props.user.user;
+    const firstName = name ? ', ' + name.split(' ')[0] + '?' : '?';
     return (
       <Card className="my-3 shadow-sm border-primary">
         <Row>
           <Col md="12">
             <CardHeader>
-              <h4 className="d-inline-block">
-                How can the village help you today?
-              </h4>
+              <h5 className="d-inline-block">
+                How can the village help you today{firstName}
+              </h5>
             </CardHeader>
             <Form onSubmit={this.onSubmitClick}>
               <CardBody>
