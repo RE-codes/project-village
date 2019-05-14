@@ -8,7 +8,7 @@ import { getAllPosts } from '../../actions';
 class NewsFeed extends Component {
   state = {
     sorted: false,
-    category: ''
+    category: 'All'
   };
 
   componentDidMount = () => {
@@ -16,26 +16,20 @@ class NewsFeed extends Component {
   };
 
   sortByCategory = category => {
-    if (category !== 'All') {
-      this.setState({
-        sorted: true,
-        category
-      });
-    } else {
-      this.setState({
-        sorted: false,
-        category: ''
-      });
-    }
+    this.setState({
+      sorted: true,
+      category
+    });
   };
 
   renderPosts = posts => {
     if (posts) {
-      const postContent = this.state.sorted
-        ? posts
-            .filter(post => post.categories.includes(this.state.category))
-            .map(post => <Post key={post._id} post={post} />)
-        : posts.map(post => <Post key={post._id} post={post} />);
+      const postContent =
+        this.state.sorted && this.state.category !== 'All'
+          ? posts
+              .filter(post => post.categories.includes(this.state.category))
+              .map(post => <Post key={post._id} post={post} />)
+          : posts.map(post => <Post key={post._id} post={post} />);
 
       return postContent;
     }
