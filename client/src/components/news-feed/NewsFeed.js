@@ -61,8 +61,10 @@ class NewsFeed extends Component {
               {categories.map(category => (
                 <Button
                   key={category}
+                  name={category}
                   className="sidebar-button"
                   onClick={this.sortByCategory.bind(this, category)}
+                  active={this.state.sorted && this.state.category === category}
                 >
                   {category}
                 </Button>
